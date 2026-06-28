@@ -21,6 +21,7 @@ html,body{height:100%;font-family:var(--font-body);color:var(--text);background:
   padding:20px 40px;
   position:sticky;top:0;z-index:100;
   box-shadow:0 2px 20px rgba(0,0,0,0.3);
+  flex-wrap:nowrap;
 }
 .ap-header-left{display:flex;align-items:center;gap:16px}
 .ap-logo{
@@ -710,4 +711,27 @@ html,body{height:100%;font-family:var(--font-body);color:var(--text);background:
   .rel-filtro { flex-direction: column; }
   .ag-slot-hora { width: 48px; font-size: 14px; }
   .ag-nav-data span { display: none; }
+}
+
+/* ===== HEADER RESPONSIVO ===== */
+@media(max-width:900px) {
+  .ap-header { padding: 14px 16px; gap: 8px; }
+  .ap-header-left { gap: 10px; min-width: 0; }
+  .ap-logo { height: 34px; }
+  .ap-header-title h2 { font-size: 17px; }
+  .ap-header-title span { display: none; }
+  .ap-header-right { gap: 8px; flex-shrink: 0; }
+  .ap-welcome { display: none; }
+  .ap-site-link, .ap-logout {
+    padding: 8px 10px;
+    font-size: 0;
+    letter-spacing: 0;
+  }
+  .ap-site-link::before { content: '\f015'; font-family:'Font Awesome 6 Free'; font-weight:900; font-size:14px; }
+  .ap-logout::before { content: '\f2f5'; font-family:'Font Awesome 6 Free'; font-weight:900; font-size:14px; }
+}
+
+@media(max-width:380px) {
+  .ap-header-title h2 { font-size: 15px; }
+  .ap-logo { height: 28px; }
 }

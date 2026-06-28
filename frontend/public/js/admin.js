@@ -152,7 +152,7 @@ async function renderTabela() {
 
       // Botão "Marcar como Feito" aparece apenas para confirmados cujo horário já passou
       const btnFeito = (a.status === 'confirmado' && jaPassou)
-        ? `<button class="ac-btn feito" onclick="marcarFeito('${a.id}','${(a.nome||'').replace(/'/g,"\\'")}')"> Feito</button>`
+        ? `<button class="ac-btn feito" onclick="marcarFeito('${a.id}','${(a.nome||'').replace(/'/g,"\\'")}')">⭐ Feito</button>`
         : '';
 
       const statusIcon = a.status === 'confirmado' ? '✅'
@@ -166,7 +166,7 @@ async function renderTabela() {
       return `<tr>
         <td class="td-nome"><strong>${a.nome}</strong><span>Desde ${criadoFmt}</span></td>
         <td><a href="https://wa.me/55${a.whatsapp.replace(/\D/g,'')}" target="_blank"
-               style="color:var(--gold);text-decoration:none;font-weight:500">${a.whatsapp}</a></td>
+               style="color:var(--gold);text-decoration:none;font-weight:500">📱 ${a.whatsapp}</a></td>
         <td class="td-procs">${procs || '—'}</td>
         <td class="td-valor">R$ ${(a.total || 0).toFixed(2).replace('.', ',')}</td>
         <td>${dataFmt}</td>
@@ -285,14 +285,20 @@ async function carregarAgendaVirtual() {
 
 // ===== AÇÕES =====
 async function aprovarAg(id, nome, whatsapp, data, hora) {
+  // Abre a aba do WhatsApp já no clique (antes de qualquer await),
+  // pois navegadores mobile bloqueiam popups abertos depois de uma espera assíncrona.
+  const novaAba = window.open('about:blank', '_blank');
   try {
     await Agendamentos.atualizarStatus(id, 'confirmado');
     const dataFmt = new Date(data + 'T12:00').toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit'});
     const msg = encodeURIComponent(`Olá, ${nome}! Seu agendamento foi confirmado para o dia ${dataFmt} às ${hora}. Aguardamos você com muito carinho!`);
-    window.open(`https://wa.me/55${whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+    const urlWpp = `https://wa.me/55${whatsapp.replace(/\D/g,'')}?text=${msg}`;
+    if (novaAba) novaAba.location.href = urlWpp;
+    else window.open(urlWpp, '_blank'); // fallback caso o navegador ainda assim tenha bloqueado
     await renderTabela();
     showToast('✅', 'Agendamento aprovado! Mensagem enviada via WhatsApp.');
   } catch (e) {
+    if (novaAba) novaAba.close();
     showToast('❌', `Erro ao aprovar: ${e.message}`);
   }
 }
@@ -317,14 +323,18 @@ async function marcarFeito(id, nome) {
 
 async function cancelarAg(id, nome, whatsapp, data, hora) {
   if (!confirm('Confirma o cancelamento deste agendamento?')) return;
+  const novaAba = window.open('about:blank', '_blank');
   try {
     await Agendamentos.atualizarStatus(id, 'cancelado');
     const dataFmt = new Date(data + 'T12:00').toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit'});
     const msg = encodeURIComponent(`Olá, ${nome}! Seu agendamento do dia ${dataFmt} às ${hora} foi cancelado. Nos desculpamos pelo transtorno!`);
-    window.open(`https://wa.me/55${whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+    const urlWpp = `https://wa.me/55${whatsapp.replace(/\D/g,'')}?text=${msg}`;
+    if (novaAba) novaAba.location.href = urlWpp;
+    else window.open(urlWpp, '_blank');
     await renderTabela();
     showToast('❌', 'Agendamento cancelado.');
   } catch (e) {
+    if (novaAba) novaAba.close();
     showToast('❌', `Erro ao cancelar: ${e.message}`);
   }
 }
@@ -404,6 +414,9 @@ async function salvarEdicao() {
     return;
   }
 
+  // Abre a aba já no clique do botão "Salvar", antes do await (evita bloqueio de popup no mobile)
+  const novaAba = (_agEditando) ? window.open('about:blank', '_blank') : null;
+
   try {
     const dataAntiga = _agEditando ? new Date(_agEditando.data + 'T12:00').toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit'}) : '';
     const horaAntiga = _agEditando ? _agEditando.hora : '';
@@ -413,7 +426,9 @@ async function salvarEdicao() {
     if (_agEditando) {
       const dataFmt = new Date(novaData + 'T12:00').toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit'});
       const msg = encodeURIComponent(`Olá, ${_agEditando.nome}! Seu agendamento foi alterado de ${dataAntiga} às ${horaAntiga} para ${dataFmt} às ${novaHora}. Qualquer dúvida, estamos à disposição!`);
-      window.open(`https://wa.me/55${_agEditando.whatsapp.replace(/\D/g,'')}?text=${msg}`, '_blank');
+      const urlWpp = `https://wa.me/55${_agEditando.whatsapp.replace(/\D/g,'')}?text=${msg}`;
+      if (novaAba) novaAba.location.href = urlWpp;
+      else window.open(urlWpp, '_blank');
     }
 
     fecharEdicao();
@@ -425,6 +440,7 @@ async function salvarEdicao() {
     }
     showToast('💾', 'Agendamento atualizado com sucesso!');
   } catch (e) {
+    if (novaAba) novaAba.close();
     showToast('❌', `Erro ao salvar: ${e.message}`);
   }
 }
