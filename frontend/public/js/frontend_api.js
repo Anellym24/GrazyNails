@@ -4,7 +4,7 @@
 // chamadas reais à API do backend.
 // =============================================
 
-const API_URL = 'http://localhost:3000'; // ← troque pela URL do Render/Railway
+const API_URL = 'https://grazy-backend.onrender.com'; // ← troque pela URL do Render/Railway
 
 // ─── TOKEN (salvo no sessionStorage como antes) ───────────────
 function getToken() {
