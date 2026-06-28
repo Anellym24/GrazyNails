@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso Administrativo — Grazy Oliveira Nails</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="public/css/login.css">
+</head>
+<body>
+
+<!-- VISUAL SIDE -->
+<div class="login-visual">
+  <img class="lv-logo" src="public/imagens/Logo elegante Crazy Oliveira Nails.png" alt="Grazy Oliveira Nails">
+  <h1 class="lv-title">Área <em>exclusiva</em><br>da profissional</h1>
+  <p class="lv-sub">Painel Administrativo</p>
+  <div class="lv-ornament">✦</div>
+</div>
+
+<!-- FORM SIDE -->
+<div class="login-form-wrap">
+  <a href="index.html" class="lf-back">← Voltar ao site</a>
+
+  <p class="lf-eyebrow">✦ Acesso restrito</p>
+  <h2 class="lf-title">Bem-vinda, Grazy</h2>
+  <p class="lf-desc">Entre com suas credenciais para acessar o painel de agendamentos.</p>
+
+  <div class="lf-error" id="loginError">
+    ⚠️ Usuário ou senha incorretos. Verifique e tente novamente.
+  </div>
+
+  <div class="lf-group">
+    <label for="adminUser">Usuário</label>
+    <input type="text" id="adminUser" class="lf-input" placeholder="seu usuário" autocomplete="username">
+  </div>
+  <div class="lf-group">
+    <label for="adminPass">Senha</label>
+    <input type="password" id="adminPass" class="lf-input" placeholder="••••••••" autocomplete="current-password">
+  </div>
+
+  <button class="lf-btn" id="loginBtn" onclick="fazerLogin()">🔐 Entrar no painel</button>
+
+  <div class="lf-divider"></div>
+  <p class="lf-note">Acesso exclusivo para a profissional.<br>Em caso de problemas, redefina suas credenciais.</p>
+</div>
+
+<script src="public/js/frontend_api.js"></script>
+<script src="public/js/login.js"></script>
+</body>
+</html>

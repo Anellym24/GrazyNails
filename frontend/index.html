@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grazy Oliveira Nails Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="public/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="public/imagens/Logo elegante Crazy Oliveira Nails.png" alt="Grazy Oliveira Nails Designer">
+  </div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#agendar">Agendamento</a>
+    <a href="#contato">Contato</a>
+    <button class="btn-admin" onclick="window.location.href='login.html'">⚙ Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span>✦ Nails Designer Profissional ✦</span></div>
+    <h1 class="hero-title">Beleza que<br><em>transforma</em><br>autoestima</h1>
+    <p class="hero-subtitle">Grazy Oliveira Nails Designer</p>
+    <p class="hero-desc">Há mais de 10 anos transformando autoestima e beleza através de unhas impecáveis, com atendimento personalizado, materiais de alta qualidade e técnicas modernas para realçar a beleza única de cada cliente.</p>
+    <div class="hero-cta">
+      <a href="#agendar" class="btn-primary">✦ Agendar Horário</a>
+      <a href="#servicos" class="btn-secondary">Ver Serviços</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Anos de Experiência</div></div>
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Clientes Satisfeitas</div></div>
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Serviços</div></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="floating-card card-1"><div class="card-text">Certificada</div><div class="card-sub">Profissional</div></div>
+    <img src="public/imagens/fotomamis.jpeg" alt="Grazy Oliveira Nails Designer">
+    <div class="floating-card card-2"><div class="card-text">5 Estrelas</div><div class="card-sub">Avaliação</div></div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦ ✦ ✦</div><div class="divider-line"></div></div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="fade-in">
+    <p class="sobre-label">✦ Conheça a Profissional</p>
+    <h2 class="sobre-title">Paixão por <em>arte</em><br>e perfeição</h2>
+    <p class="sobre-text">Com mais de uma década dedicada ao universo das unhas, Grazy Oliveira construiu uma reputação baseada em excelência, cuidado e atenção aos detalhes. Cada atendimento é único, pensado especialmente para valorizar a beleza natural de cada cliente.</p>
+    <p class="sobre-text">Utilizando materiais de primeira qualidade e técnicas de ponta, o estúdio oferece um ambiente sofisticado, higiênico e acolhedor, onde cada cliente recebe o tratamento que merece.</p>
+    <div class="sobre-features">
+      <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Materiais de alta qualidade e marcas premium</span></div>
+      <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Ambiente 100% higienizado e esterilizado</span></div>
+      <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Atendimento personalizado e exclusivo</span></div>
+      <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Técnicas modernas e criativas</span></div>
+      <div class="feature-item"><div class="feature-dot"></div><span class="feature-text">Conforto e sofisticação em cada detalhe</span></div>
+    </div>
+  </div>
+  <div class="sobre-image-wrap fade-in">
+    <img src="public/imagens/unha2.PNG" alt="Trabalho de Unhas — Grazy Oliveira">
+    <div class="sobre-gold-frame"></div>
+    <div class="sobre-badge-exp"><div class="num">10+</div><div class="txt">Anos de<br>Experiência</div></div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- SERVIÇOS -->
+<section class="servicos" id="servicos">
+  <div class="section-header fade-in">
+    <span class="section-label">✦ O que oferecemos</span>
+    <h2 class="section-title">Nossos <em>Serviços</em></h2>
+    <p class="section-sub">Escolha o serviço ideal para realçar sua beleza com qualidade e sofisticação</p>
+  </div>
+  <div class="servicos-tabs">
+    <button class="tab-btn active" onclick="filtrarServicos('todos',this)">Todos</button>
+    <button class="tab-btn" onclick="filtrarServicos('tradicional',this)">Tradicionais</button>
+    <button class="tab-btn" onclick="filtrarServicos('alongamento',this)">Alongamentos</button>
+    <button class="tab-btn" onclick="filtrarServicos('postica',this)">Postiças</button>
+    <button class="tab-btn" onclick="filtrarServicos('gel',this)">Gel</button>
+    <button class="tab-btn" onclick="filtrarServicos('pes',this)">Pés</button>
+    <button class="tab-btn" onclick="filtrarServicos('manutencao',this)">Manutenção</button>
+  </div>
+  <div class="servicos-grid">
+
+    <!-- CARD: Unhas Tradicionais
+         Imagem sugerida: foto de esmaltação simples/francesinha
+         Troque o src abaixo pela sua imagem: public/imagens/trad.jpg -->
+    <div class="servico-card visible" data-cat="tradicional">
+      <div class="servico-img">
+        <img src="public/imagens/unhasSimples.jpeg"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/tradicional.jpg</span></div>'"
+             alt="Unhas Tradicionais">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Unhas Tradicionais</div>
+        <ul class="servico-items">
+          <li><span>Pé e Mão Simples</span><span class="item-price">R$ 45 / 23</span></li>
+          <li><span>Francesinha</span><span class="item-price">R$ 48 / 25</span></li>
+          <li><span>Decoradas à Mão</span><span class="item-price">R$ 56 / 28</span></li>
+          <li><span>Decoradas c/ Adesivos</span><span class="item-price">R$ 52 / 26</span></li>
+          <li><span>Cutílegam + Base</span><span class="item-price">R$ 36 / 20</span></li>
+          <li><span>Cutílegam + Top Coat</span><span class="item-price">R$ 38 / 22</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Pé e Mão Simples')">Agendar</button>
+      </div>
+    </div>
+
+    <!-- CARD: Alongamentos
+         Troque o src: public/imagens/servicos/alongamento.jpg -->
+    <div class="servico-card visible" data-cat="alongamento">
+      <div class="servico-img">
+        <img src="public/imagens/alongamento.jpeg"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/alongamento.jpg</span></div>'"
+             alt="Alongamentos">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Alongamentos</div>
+        <ul class="servico-items">
+          <li><span>Fibra de Vidro</span><span class="item-price">R$ 140</span></li>
+          <li><span>Acrygel</span><span class="item-price">R$ 130</span></li>
+          <li><span>Banho de Gel (1ª vez)</span><span class="item-price">R$ 100</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Fibra de Vidro')">Agendar</button>
+      </div>
+    </div>
+
+    <!-- CARD: Postiças
+         Troque o src: public/imagens/servicos/postica.jpg -->
+    <div class="servico-card visible" data-cat="postica">
+      <div class="servico-img">
+        <img src="public/imagens/postica.jpeg"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/postica.jpg</span></div>'"
+             alt="Postiças">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Postiças</div>
+        <ul class="servico-items">
+          <li><span>Postiça Simples</span><span class="item-price">R$ 40</span></li>
+          <li><span>Realista Decorada</span><span class="item-price">R$ 60</span></li>
+          <li><span>Realista Encapsulada</span><span class="item-price">R$ 70</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Postiça Simples')">Agendar</button>
+      </div>
+    </div>
+
+    <!-- CARD: Esmaltação em Gel
+         Troque o src: public/imagens/servicos/gel.jpg -->
+    <div class="servico-card visible" data-cat="gel">
+      <div class="servico-img">
+        <img src="public/imagens/esmaltacaoEmGel.jpeg"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/gel.jpg</span></div>'"
+             alt="Esmaltação em Gel">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Esmaltação em Gel</div>
+        <ul class="servico-items">
+          <li><span>Mão Simples</span><span class="item-price">R$ 30</span></li>
+          <li><span>Mão Decorada</span><span class="item-price">R$ 38</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Esmaltação em Gel – Simples')">Agendar</button>
+      </div>
+    </div>
+
+    <!-- CARD: Cuidados com os Pés
+         Troque o src: public/imagens/servicos/pes.jpg -->
+    <div class="servico-card visible" data-cat="pes">
+      <div class="servico-img">
+        <img src="public/imagens/pés.jpeg"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/pes.jpg</span></div>'"
+             alt="Cuidados com os Pés">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Cuidados com os Pés</div>
+        <ul class="servico-items">
+          <li><span>Pé e Mão + Esfoliação</span><span class="item-price">R$ 60</span></li>
+          <li><span>Pé + Esfoliação + Motor</span><span class="item-price">R$ 40</span></li>
+          <li><span>Pé + Motor</span><span class="item-price">R$ 28</span></li>
+          <li><span>Plástica dos Pés + Esm.</span><span class="item-price">R$ 70</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Pé e Mão + Esfoliação')">Agendar</button>
+      </div>
+    </div>
+
+    <!-- CARD: Manutenção
+         Troque o src: public/imagens/servicos/manutencao.jpg -->
+    <div class="servico-card visible" data-cat="manutencao">
+      <div class="servico-img">
+        <img src="public/imagens/unha1.PNG"
+             onerror="this.parentElement.innerHTML='<div class=\'servico-img-placeholder\'><div class=\'ph-icon\'>🖼</div><span>Adicione uma imagem<br>public/imagens/servicos/manutencao.jpg</span></div>'"
+             alt="Manutenção">
+      </div>
+      <div class="servico-body">
+        <div class="servico-name">Manutenção</div>
+        <ul class="servico-items">
+          <li><span>Fibra ou Acrylgel</span><span class="item-price">R$ 95</span></li>
+          <li><span>Reposição de Unhas</span><span class="item-price">R$ 5/cada</span></li>
+        </ul>
+        <button class="servico-cta" onclick="selecionarServico('Manutenção Fibra/Acrylgel')">Agendar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-ornament">✦</div><div class="divider-line"></div></div>
+
+<!-- AGENDAMENTO -->
+<section class="agendamento" id="agendar">
+  <div class="ag-header fade-in">
+    <span class="section-label">✦ Reserve seu horário</span>
+    <h2 class="section-title">Agende seu <em>momento</em> de beleza</h2>
+    <p style="font-size:16px;color:var(--text);opacity:0.7;margin-top:12px">Rápido, fácil e seguro. Preencha abaixo e aguarde a confirmação pelo WhatsApp.</p>
+  </div>
+  <div class="ag-layout fade-in">
+    <div class="form-card">
+      <div class="form-section-title"><i class="fa-solid fa-user"></i> Seus dados</div>
+      <div class="form-group">
+        <label>Nome Completo <span class="req">*</span></label>
+        <input type="text" id="f-nome" placeholder="Ex: Maria da Silva" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Número de WhatsApp <span class="req">*</span></label>
+        <input type="tel" id="f-whats" placeholder="(21) 99999-9999" autocomplete="tel">
+      </div>
+      <div class="form-section-title" style="margin-top:32px"></span> Escolha os procedimentos</div>
+      <div class="proc-grid" id="procGrid"></div>
+      <div class="form-section-title" style="margin-top:32px"><i class="fa-solid fa-calendar-days calendario"></i> Data e horário</div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Data desejada <span class="req">*</span></label>
+          <input type="date" id="f-data">
+        </div>
+        <div class="form-group">
+          <label>Horário desejado <span class="req">*</span></label>
+          <select id="f-hora">
+            <option value="">Selecione...</option>
+            <option>08:00</option><option>08:30</option>
+            <option>09:00</option><option>09:30</option>
+            <option>10:00</option><option>10:30</option>
+            <option>11:00</option><option>11:30</option>
+            <option>13:00</option><option>13:30</option>
+            <option>14:00</option><option>14:30</option>
+            <option>15:00</option><option>15:30</option>
+            <option>16:00</option><option>16:30</option>
+            <option>17:00</option><option>17:30</option>
+            <option>18:00</option><option>18:30</option>
+            <option>19:00</option><option>19:30</option>
+            <option>20:00</option><option>20:30</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-submit" id="btnEnviar" onclick="enviarAgendamento()">
+        <span>✦</span> Confirmar Agendamento
+      </button>
+      <p style="font-size:14px;color:var(--text);opacity:0.55;text-align:center;margin-top:14px;line-height:1.6">Após o envio, você receberá a confirmação via WhatsApp em breve.</p>
+    </div>
+    <div class="resumo-card" id="resumoCard">
+      <h3 class="resumo-title">Resumo do Pedido</h3>
+      <div class="resumo-empty" id="resumoEmpty">
+        <p>Selecione os procedimentos ao lado para ver o resumo aqui.</p>
+      </div>
+      <ul class="resumo-list" id="resumoList" style="display:none"></ul>
+      <div class="resumo-total" id="resumoTotal" style="display:none">
+        <span class="resumo-total-label">Total do Atendimento</span>
+        <span class="resumo-total-value" id="resumoTotalVal">R$ 0</span>
+      </div>
+      <div class="resumo-info" id="resumoInfo" style="display:none">
+        <div class="resumo-info-row"><div><div class="lbl">Data</div><div class="val" id="ri-data">—</div></div></div>
+        <div class="resumo-info-row"><div><div class="lbl">Horário</div><div class="val" id="ri-hora">—</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="footer-grid">
+    <div>
+      <img src="public/imagens/Logo elegante Crazy Oliveira Nails.png" alt="Grazy Oliveira Nails" class="footer-logo">
+      <p class="footer-desc">Transformando beleza e autoestima através de unhas impecáveis, com qualidade, higiene e atendimento personalizado.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/_.grazynails" class="social-btn" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/5521992297472" class="social-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://tiktok.com/@grazy02Oliveira" class="social-btn" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Unhas Tradicionais</a></li>
+        <li><a href="#servicos">Alongamentos</a></li>
+        <li><a href="#servicos">Postiças</a></li>
+        <li><a href="#servicos">Esmaltação em Gel</a></li>
+        <li><a href="#servicos">Cuidados com os Pés</a></li>
+        <li><a href="#servicos">Manutenção</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Atendimento</h4>
+      <ul>
+        <li><a href="#">Ter–Sáb: 8h às 20h</a></li>
+        <li><a href="#">Dom–Seg: Fechado</a></li>
+      </ul>
+      <h4 style="margin-top:24px">Contato</h4>
+      <ul>
+        <li><a href="#">WhatsApp disponível</a></li>
+        <li><a href="#agendar">Agendar Online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Grazy Oliveira Nails Designer. Todos os direitos reservados.</span>
+    <span>Feito com muito carinho</span>
+  </div>
+</footer>
+
+<!-- CONFIRMAÇÃO -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">✅</div>
+    <h3 class="confirm-title">Solicitação Enviada!</h3>
+    <p class="confirm-msg">Sua solicitação de agendamento foi registrada com sucesso. Em breve você receberá uma confirmação através do WhatsApp.</p>
+    <div class="confirm-resumo" id="confirmResumo"></div>
+    <button class="confirm-close" onclick="fecharConfirm()">👍 Ótimo, obrigada!</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="t-icon"></span><span id="toastMsg"></span></div>
+
+<script src="public/js/frontend_api.js"></script>
+<script src="public/js/script.js"></script>
+
+</body>
+</html>

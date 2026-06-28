@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo — Grazy Oliveira Nails</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="public/css/admin.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ap-header">
+  <div class="ap-header-left">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" title="Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <img class="ap-logo" src="public/imagens/Logo elegante Crazy Oliveira Nails.png" alt="Logo">
+    <div class="ap-header-title">
+      <h2>Painel Administrativo</h2>
+      <span>Grazy Oliveira Nails Designer</span>
+    </div>
+  </div>
+  <div class="ap-header-right">
+    <span class="ap-welcome">Olá, Grazy </span>
+    <a href="index.html" class="ap-site-link">← Ver site</a>
+    <button class="ap-logout" onclick="sairAdmin()">Sair</button>
+  </div>
+</header>
+
+<!-- LAYOUT PRINCIPAL -->
+<div class="ap-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="ap-sidebar" id="apSidebar">
+    <nav class="sidebar-nav">
+      <a class="sidebar-link active" onclick="mostrarPagina('agendamentos')" href="#">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Agendamentos</span>
+      </a>
+      <a class="sidebar-link" onclick="mostrarPagina('servicos')" href="#">
+        <i class="fa-solid fa-scissors"></i>
+        <span>Gerenciar Serviços</span>
+      </a>
+      <a class="sidebar-link" onclick="mostrarPagina('agenda')" href="#">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Agenda Virtual</span>
+      </a>
+      <a class="sidebar-link" onclick="mostrarPagina('relatorios')" href="#">
+        <i class="fa-solid fa-chart-bar"></i>
+        <span>Relatórios</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="ap-main">
+
+    <!-- ===== PÁGINA: AGENDAMENTOS ===== -->
+    <div class="ap-page" id="page-agendamentos">
+
+      <!-- STATS -->
+      <div class="ap-stats" id="apStats">
+        <div class="ap-stat">
+          <div class="s-icon-wrap"><i class="fa-regular fa-clipboard icons"></i></div>
+          <div class="s-info"><div class="s-num" id="sTotal">0</div><div class="s-label">Total</div></div>
+        </div>
+        <div class="ap-stat">
+          <div class="s-icon-wrap"><i class="fa-solid fa-clipboard-list icons"></i></div>
+          <div class="s-info"><div class="s-num" id="sHoje">0</div><div class="s-label">Hoje</div></div>
+        </div>
+        <div class="ap-stat">
+          <div class="s-icon-wrap"><i class="fa-solid fa-hourglass-half icons"></i></div>
+          <div class="s-info"><div class="s-num" id="sPendente">0</div><div class="s-label">Pendentes</div></div>
+        </div>
+        <div class="ap-stat">
+          <div class="s-icon-wrap"><i class="fa-solid fa-square-check icons"></i></div>
+          <div class="s-info"><div class="s-num" id="sConfirmado">0</div><div class="s-label">Confirmados</div></div>
+        </div>
+        <div class="ap-stat">
+          <div class="s-icon-wrap"><i class="fa-solid fa-star icons"></i></div>
+          <div class="s-info"><div class="s-num" id="sFeito">0</div><div class="s-label">Feitos</div></div>
+        </div>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="ap-filters">
+        <div class="ap-filter-group">
+          <label><i class="fa-solid fa-magnifying-glass icons"></i> Buscar por nome</label>
+          <input type="text" id="fNome" placeholder="Nome da cliente…" oninput="renderTabela()">
+        </div>
+        <div class="ap-filter-group">
+          <label><i class="fa-regular fa-calendar icons"></i> Filtrar por data</label>
+          <input type="date" id="fData" onchange="renderTabela()">
+        </div>
+        <div class="ap-filter-group">
+          <label><i class="fa-solid fa-tag icons"></i> Status</label>
+          <select id="fStatus" onchange="renderTabela()">
+            <option value="">Todos os status</option>
+            <option value="pendente">⏳ Pendente</option>
+            <option value="confirmado">✅ Confirmado</option>
+            <option value="cancelado">❌ Cancelado</option>
+            <option value="feito">⭐ Feito</option>
+          </select>
+        </div>
+        <button class="ap-filter-clear" onclick="limparFiltros()">Limpar filtros</button>
+      </div>
+
+      <!-- TABELA -->
+      <div class="ap-table-wrap">
+        <div class="ap-table-header">
+          <h3>Lista de Agendamentos</h3>
+          <span class="ap-count" id="apCount">0 agendamentos</span>
+        </div>
+        <div id="tabelaContent"></div>
+      </div>
+    </div>
+
+    <!-- ===== PÁGINA: SERVIÇOS ===== -->
+    <div class="ap-page hidden" id="page-servicos">
+      <div class="ap-page-title">
+        <h2><i class="fa-solid fa-scissors icons"></i> Gerenciar Serviços</h2>
+        <button class="ac-btn aprovar" onclick="abrirNovoServico()">+ Adicionar Serviço</button>
+      </div>
+      <div class="ap-table-wrap">
+        <div id="servicosLista" style="padding:16px"></div>
+      </div>
+    </div>
+
+    <!-- ===== PÁGINA: AGENDA VIRTUAL ===== -->
+    <div class="ap-page hidden" id="page-agenda">
+      <div class="ap-page-title">
+        <h2><i class="fa-solid fa-calendar-days icons"></i> Agenda Virtual</h2>
+      </div>
+
+      <!-- Navegador de dia -->
+      <div class="ag-nav">
+        <button class="ag-nav-btn" onclick="mudarDiaAgenda(-1)" title="Dia anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="ag-nav-data">
+          <input type="date" id="agendaData" onchange="carregarAgendaVirtual()">
+          <span id="agendaDataLabel"></span>
+        </div>
+        <button class="ag-nav-btn" onclick="mudarDiaAgenda(1)" title="Próximo dia">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="ag-nav-hoje" onclick="irParaHojeAgenda()">Hoje</button>
+      </div>
+
+      <!-- Lista de horários do dia -->
+      <div id="agendaLista"></div>
+    </div>
+
+    <!-- ===== PÁGINA: RELATÓRIOS ===== -->
+    <div class="ap-page hidden" id="page-relatorios">
+      <div class="ap-page-title">
+        <h2><i class="fa-solid fa-chart-bar icons"></i> Relatórios</h2>
+      </div>
+
+      <!-- Seletor de mês/ano -->
+      <div class="rel-filtro">
+        <div class="ap-filter-group">
+          <label><i class="fa-regular fa-calendar icons"></i> Mês</label>
+          <select id="relMes">
+            <option value="1">Janeiro</option><option value="2">Fevereiro</option>
+            <option value="3">Março</option><option value="4">Abril</option>
+            <option value="5">Maio</option><option value="6">Junho</option>
+            <option value="7">Julho</option><option value="8">Agosto</option>
+            <option value="9">Setembro</option><option value="10">Outubro</option>
+            <option value="11">Novembro</option><option value="12">Dezembro</option>
+          </select>
+        </div>
+        <div class="ap-filter-group">
+          <label><i class="fa-solid fa-hashtag icons"></i> Ano</label>
+          <input type="number" id="relAno" value="" min="2024" max="2030" placeholder="2025">
+        </div>
+        <button class="edit-save" style="max-width:180px;margin-top:0;padding:13px 24px" onclick="carregarRelatorios()">
+          <i class="fa-solid fa-search"></i> Buscar
+        </button>
+      </div>
+
+      <!-- Cards de resumo -->
+      <div class="rel-cards" id="relCards" style="display:none">
+        <div class="rel-card destaque">
+          <div class="rel-card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+          <div class="rel-card-info">
+            <div class="rel-card-num" id="relArrecadacao">R$ 0,00</div>
+            <div class="rel-card-label">Arrecadação no Mês</div>
+          </div>
+        </div>
+        <div class="rel-card">
+          <div class="rel-card-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="rel-card-info">
+            <div class="rel-card-num" id="relTotalFeitos">0</div>
+            <div class="rel-card-label">Atendimentos Realizados</div>
+          </div>
+        </div>
+        <div class="rel-card">
+          <div class="rel-card-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="rel-card-info">
+            <div class="rel-card-num" id="relTotalClientes">0</div>
+            <div class="rel-card-label">Clientes Atendidas</div>
+          </div>
+        </div>
+        <div class="rel-card">
+          <div class="rel-card-icon"><i class="fa-solid fa-coins"></i></div>
+          <div class="rel-card-info">
+            <div class="rel-card-num" id="relTicketMedio">R$ 0,00</div>
+            <div class="rel-card-label">Ticket Médio</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ranking de clientes -->
+      <div class="ap-table-wrap" id="relRankingWrap" style="display:none">
+        <div class="ap-table-header">
+          <h3>Ranking de Clientes</h3>
+          <span class="ap-count" id="relMesLabel"></span>
+        </div>
+        <div id="relRankingContent"></div>
+      </div>
+
+      <!-- Estado vazio -->
+      <div class="ap-empty" id="relVazio">
+        <div class="e-icon"><i class="fa-solid fa-chart-bar iconsFundo"></i></div>
+        <p>Selecione o mês e ano para visualizar os relatórios</p>
+        <small>Apenas atendimentos com status "Feito" são contabilizados</small>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL EDITAR AGENDAMENTO -->
+<div class="edit-overlay" id="editOverlay">
+  <div class="edit-box">
+    <button class="edit-close" onclick="fecharEdicao()">✕</button>
+    <h3 class="edit-title"><i class="fa-solid fa-pencil icons"></i> Editar Agendamento</h3>
+    <input type="hidden" id="edit-id">
+    <div class="edit-group">
+      <label><i class="fa-solid fa-clipboard-list icons"></i> Nova data</label>
+      <input type="date" id="edit-data">
+    </div>
+    <div class="edit-group">
+      <label><i class="fa-regular fa-clock icons"></i> Novo horário</label>
+      <select id="edit-hora">
+        <option>08:00</option><option>08:30</option>
+            <option>09:00</option><option>09:30</option>
+            <option>10:00</option><option>10:30</option>
+            <option>11:00</option><option>11:30</option>
+            <option>13:00</option><option>13:30</option>
+            <option>14:00</option><option>14:30</option>
+            <option>15:00</option><option>15:30</option>
+            <option>16:00</option><option>16:30</option>
+            <option>17:00</option><option>17:30</option>
+            <option>18:00</option><option>18:30</option>
+            <option>19:00</option><option>19:30</option>
+            <option>20:00</option><option>20:30</option>
+      </select>
+    </div>
+    <div class="edit-group">
+      <label>Procedimentos</label>
+      <div class="edit-proc-grid" id="editProcGrid"></div>
+      <div class="edit-total-preview">
+        <span>Novo total:</span>
+        <strong id="editTotalPreview">R$ 0</strong>
+      </div>
+    </div>
+    <button class="edit-save" onclick="salvarEdicao()"><i class="fa-solid fa-floppy-disk icons"></i> Salvar alterações</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span id="toastIcon"></span>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- OVERLAY: Formulário de serviço -->
+<div class="overlay" id="servicoFormOverlay">
+  <div class="modal-box" style="max-width:420px">
+    <div class="modal-header">
+      <h3 id="svf-titulo">Serviço</h3>
+      <button class="modal-close" onclick="fecharServicoForm()">✕</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:16px;padding-top:12px">
+      <div class="form-group">
+        <label>ID único (sem espaços)</label>
+        <input type="text" id="svf-id" placeholder="ex: gel-francesa">
+      </div>
+      <div class="form-group">
+        <label>Nome do serviço</label>
+        <input type="text" id="svf-nome" placeholder="ex: Francesa em Gel">
+      </div>
+      <div class="form-group">
+        <label>Preço (R$)</label>
+        <input type="number" id="svf-preco" placeholder="ex: 55" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Categoria</label>
+        <select id="svf-cat">
+          <option value="tradicional">Tradicionais</option>
+          <option value="alongamento">Alongamentos</option>
+          <option value="postica">Postiças</option>
+          <option value="gel">Gel</option>
+          <option value="pes">Pés</option>
+          <option value="manutencao">Manutenção</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="salvarServico()" style="margin-top:4px">
+        💾 Salvar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="public/js/frontend_api.js"></script>
+<script src="public/js/admin.js"></script>
+</body>
+</html>
